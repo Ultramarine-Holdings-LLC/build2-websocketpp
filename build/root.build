@@ -1,0 +1,7 @@
+cxx.std = latest
+
+using cxx
+
+hxx{*}: extension = hpp
+
+src_upstream = $src_root/upstream

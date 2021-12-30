@@ -1,0 +1,12 @@
+import libs = libboost-asio%lib{boost_asio}
+
+lib{websocketpp}: $src_upstream/websocketpp/hxx{**} $libs
+{
+  cxx.export.poptions += "-DBOOST_ASIO_HAS_STD_INVOKE_RESULT"
+  cxx.export.poptions += "-I$src_upstream"
+}
+
+../upstream/websocketpp/
+{
+  hxx{*}: install.subdirs = true
+}
