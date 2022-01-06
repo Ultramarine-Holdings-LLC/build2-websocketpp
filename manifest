@@ -1,6 +1,6 @@
 : 1
 name: websocketpp
-version: 0.8.2-a.0.z
+version: 0.8.2
 summary: C++ websocket client/server library
 description-file: upstream/readme.md
 license: BSD-3-Clause
