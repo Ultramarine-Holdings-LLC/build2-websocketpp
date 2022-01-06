@@ -1,6 +1,6 @@
 : 1
 name: websocketpp
-version: 0.8.2
+version: 0.8.2+1
 summary: C++ websocket client/server library
 description-file: upstream/readme.md
 license: BSD-3-Clause
@@ -10,4 +10,3 @@ doc-url: https://docs.websocketpp.org/
 depends: * build2 >= 0.14.0
 depends: * bpkg >= 0.14.0
 depends: libboost-asio ^1.76.0
-depends: libboost-test ^1.76.0
