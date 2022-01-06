@@ -24,6 +24,7 @@ lib{websocketpp}: websocketpp/hxx{**} $libs
     "-D_WEBSOCKETPP_CPP11_MEMORY_" \
     "-D_WEBSOCKETPP_CPP11_STL_" \
     "-I$src_base"
+  cxx.export.libs += $libs
 }
 
 websocketpp/hxx{*}:
