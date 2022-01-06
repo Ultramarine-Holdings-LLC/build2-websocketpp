@@ -2,7 +2,12 @@ import libs = libboost-asio%lib{boost_asio}
 
 if ($cxx.target.class == 'windows')
 {
-    lib{websocketpp}: cxx.export.poptions += "-DUNICODE" "-D_UNICODE" "-D_CRT_SECURE_NO_WARNINGS" "-D_SCL_SECURE_NO_WARNINGS" "-DNOMINMAX"
+    cxx.libs += "ws2_32.lib"
+    lib{websocketpp}:
+    {
+        cxx.export.libs += "ws2_32.lib"
+        cxx.export.poptions += "-DUNICODE" "-D_UNICODE" "-D_CRT_SECURE_NO_WARNINGS" "-D_SCL_SECURE_NO_WARNINGS" "-DNOMINMAX"
+    }
 }
 else
 {
@@ -13,7 +18,6 @@ else
 lib{websocketpp}: websocketpp/hxx{**} $libs
 {
   cxx.export.poptions += \
-    "-DBOOST_ASIO_HAS_STD_INVOKE_RESULT" \
     "-D_WEBSOCKETPP_CPP11_FUNCTIONAL_" \
     "-D_WEBSOCKETPP_CPP11_SYSTEM_ERROR_" \
     "-D_WEBSOCKETPP_CPP11_RANDOM_DEVICE_" \
