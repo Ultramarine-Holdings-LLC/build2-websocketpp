@@ -1,12 +1,29 @@
 import libs = libboost-asio%lib{boost_asio}
 
-lib{websocketpp}: $src_upstream/websocketpp/hxx{**} $libs
+if ($cxx.target.class == 'windows')
 {
-  cxx.export.poptions += "-DBOOST_ASIO_HAS_STD_INVOKE_RESULT"
-  cxx.export.poptions += "-I$src_upstream"
+    lib{websocketpp}: cxx.export.poptions += "-DUNICODE" "-D_UNICODE" "-D_CRT_SECURE_NO_WARNINGS" "-D_SCL_SECURE_NO_WARNINGS" "-DNOMINMAX"
+}
+else
+{
+    cxx.libs += "-lpthread" "-lrt"
+    lib{websocketpp}: cxx.export.libs += "-lpthread" "-lrt"
 }
 
-../upstream/websocketpp/
+lib{websocketpp}: websocketpp/hxx{**} $libs
 {
-  hxx{*}: install.subdirs = true
+  cxx.export.poptions += \
+    "-DBOOST_ASIO_HAS_STD_INVOKE_RESULT" \
+    "-D_WEBSOCKETPP_CPP11_FUNCTIONAL_" \
+    "-D_WEBSOCKETPP_CPP11_SYSTEM_ERROR_" \
+    "-D_WEBSOCKETPP_CPP11_RANDOM_DEVICE_" \
+    "-D_WEBSOCKETPP_CPP11_MEMORY_" \
+    "-D_WEBSOCKETPP_CPP11_STL_" \
+    "-I$src_base"
+}
+
+websocketpp/hxx{*}:
+{
+    install = include/websocketpp/
+    install.subdirs = true
 }
