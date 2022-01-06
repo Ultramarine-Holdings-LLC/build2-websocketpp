@@ -1,0 +1,8 @@
+import libs  = websocketpp%lib{websocketpp}
+import libs += libboost-test%lib{boost_test}
+
+hxx{*}: extension = hpp
+cxx{*}: extension = cpp
+
+./: exe{driver-client}: roles/cxx{client} $libs
+./: exe{driver-server}: roles/cxx{server} $libs
