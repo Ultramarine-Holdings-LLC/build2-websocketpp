@@ -1,5 +1,7 @@
 using cxx
 
+cxx.std = latest
+
 hxx{*}: extension = hxx
 cxx{*}: extension = cxx
 
