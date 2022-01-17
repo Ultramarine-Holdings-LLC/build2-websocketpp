@@ -1,0 +1,5 @@
+: 1
+name: websocketpp
+version: 0.8.2+4
+summary: C++ websocket client/server library
+license: BSD-3-Clause
